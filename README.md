@@ -7,21 +7,16 @@
 - Detail-oriented effects and animations using TailwindCSS
 - React SWR data fetching
 - Zustand state management
+- Hosted on vercel { https://nextflixcloud.vercel.app/auth }
 ### Clone the repository
-
 ```shell
 git clone https://github.com/adityagoyal200/Netflix-clone.git
 ```
-
 ### Install packages
-
 ```shell
 npm i
 ```
-
 ### Setup .env file
-
-
 ```js
 DATABASE_URL=
 GOOGLE_CLIENT_ID=
@@ -31,7 +26,6 @@ GITHUB_SECRET=
 NEXTAUTH_JWT_SECRET=
 NEXTAUTH_SECRET=
 ```
-
 ### Start the app
 
 ```shell
