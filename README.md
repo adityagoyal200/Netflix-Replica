@@ -7,7 +7,7 @@
 - Detail-oriented effects and animations using TailwindCSS
 - React SWR data fetching
 - Zustand state management
-- Hosted on vercel { https://nextflixcloud.vercel.app/auth }
+- Hosted on vercel { https://nexttflixcloud.vercel.app/auth }
 ### Clone the repository
 ```shell
 git clone https://github.com/adityagoyal200/Netflix-clone.git
