@@ -9,24 +9,24 @@ const TOP_OFFSET = 66;
 const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [showBackground, setShowBackground] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY >= TOP_OFFSET) {
-        setShowBackground(true)
-      } else {
-        setShowBackground(false)
-      }
-    }
+  // Remove the effect that changes the background color on scroll
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY >= TOP_OFFSET) {
+  //       setShowBackground(true)
+  //     } else {
+  //       setShowBackground(false)
+  //     }
+  //   }
 
-    window.addEventListener('scroll', handleScroll);
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   }
+  // }, []);
 
   const toggleAccountMenu = useCallback(() => {
     setShowAccountMenu((current) => !current);
@@ -42,7 +42,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full fixed z-40">
-      <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition-all duration-300 ${showBackground ? 'bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg' : ''}`}>
+      <div className="px-4 md:px-16 py-6 flex flex-row items-center transition-all duration-300">
         <img src="/images/logo.png" className="h-4 lg:h-7" alt="Logo" />
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
           <NavbarItem label="Home" active />
@@ -85,7 +85,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 export default Navbar;
