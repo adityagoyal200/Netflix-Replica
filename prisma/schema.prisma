@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["mongoDb"]
-=======
-generator client {
-  provider = "prisma-client-js"
->>>>>>> origin/master
 }
 
 datasource db {
@@ -15,23 +8,6 @@ datasource db {
 }
 
 model User {
-<<<<<<< HEAD
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  image String?
-  email String? @unique
-  emailVerified DateTime?
-  hashedPassword String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  sessions Session[]
-  accounts Account[]
-  favoriteIds String[] @db.ObjectId
-}
-
-model Account {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-=======
   id              String      @id @default(auto()) @map("_id") @db.ObjectId
   name            String
   image           String?
@@ -47,7 +23,6 @@ model Account {
 
 model Account {
   id                 String   @id @default(auto()) @map("_id") @db.ObjectId
->>>>>>> origin/master
   userId             String   @db.ObjectId
   type               String
   provider           String
@@ -66,20 +41,6 @@ model Account {
 }
 
 model Session {
-<<<<<<< HEAD
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken String @unique
-  userId String @db.ObjectId
-  expires DateTime
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model VerificationToken {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  identifier String
-  token      String   @unique
-  expires    DateTime
-=======
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken  String    @unique
   userId        String    @db.ObjectId
@@ -92,23 +53,10 @@ model VerificationToken {
   identifier  String
   token       String    @unique
   expires     DateTime
->>>>>>> origin/master
-
   @@unique([identifier, token])
 }
 
 model Movie {
-<<<<<<< HEAD
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  description String
-  videoUrl String
-  thumbnailUrl String
-  genre String
-  duration String
-}
-
-=======
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   title         String
   description   String
@@ -117,4 +65,3 @@ model Movie {
   genre         String
   duration      String
 }
->>>>>>> origin/master
