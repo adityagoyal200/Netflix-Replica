@@ -6,10 +6,10 @@ import { useCallback } from "react";
 import useCurrentUser from "@/hooks/useCurrentUser";
 
 const images = [
-  '/images/default-blue.png',
-  '/images/default-red.png',
-  '/images/default-slate.png',
-  '/images/default-green.png'
+  '/images/profile1.jpg',
+  '/images/profile2.jpg',
+  '/images/profile3.jpg',
+  '/images/profile4.jpg'
 ]
 
 interface UserCardProps {
@@ -57,7 +57,7 @@ const App = () => {
   return (
     <div className="flex items-center h-full justify-center">
       <div className="flex flex-col">
-        <h1 className="text-3xl md:text-6xl text-white text-center">Who&#39;s watching?</h1>
+        <h1 className="text-3xl md:text-6xl text-white text-center">Who&#39;s Chillin?</h1>
         <div className="flex items-center justify-center gap-8 mt-10">
           <div onClick={() => selectProfile()}>
             <UserCard name={currentUser?.name} />
