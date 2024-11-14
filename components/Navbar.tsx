@@ -11,23 +11,6 @@ const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
-  // Remove the effect that changes the background color on scroll
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (window.scrollY >= TOP_OFFSET) {
-  //       setShowBackground(true)
-  //     } else {
-  //       setShowBackground(false)
-  //     }
-  //   }
-
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   }
-  // }, []);
-
   const toggleAccountMenu = useCallback(() => {
     setShowAccountMenu((current) => !current);
   }, []);
@@ -58,7 +41,6 @@ const Navbar = () => {
           <MobileMenu visible={showMobileMenu} />
         </div>
         <div className="flex flex-row ml-auto gap-7 items-center">
-          {/* Search Icon or Search Box */}
           <div className="relative">
             <div onClick={toggleSearch} className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
               <MagnifyingGlassIcon className="w-6" />

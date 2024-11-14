@@ -79,8 +79,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
               <ChevronDownIcon className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6" />
             </div>
           </div>
-          <p className="text-green-400 font-semibold mt-4">
-            New <span className="text-white">{new Date().getFullYear()}</span>
+          <p className="text-red-500 font-semibold mt-4">
+            {data?.title} <span className="text-white">{new Date().getFullYear()}</span>
           </p>
           <div className="flex flex-row mt-4 gap-2 items-center"> 
             <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
