@@ -1,5 +1,9 @@
 import { NextPageContext } from "next";
+<<<<<<< HEAD
 import { getSession, useSession } from "next-auth/react";
+=======
+import { getSession} from "next-auth/react";
+>>>>>>> origin/master
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 
