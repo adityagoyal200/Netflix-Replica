@@ -10,10 +10,10 @@ const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log(window.scrollY)
       if (window.scrollY >= TOP_OFFSET) {
         setShowBackground(true)
       } else {
@@ -36,13 +36,17 @@ const Navbar = () => {
     setShowMobileMenu((current) => !current);
   }, []);
 
+  const toggleSearch = useCallback(() => {
+    setShowSearch((current) => !current);
+  }, []);
+
   return (
     <nav className="w-full fixed z-40">
-      <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${showBackground ? 'bg-zinc-900 bg-opacity-90' : ''}`}>
+      <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition-all duration-300 ${showBackground ? 'bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg' : ''}`}>
         <img src="/images/logo.png" className="h-4 lg:h-7" alt="Logo" />
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
           <NavbarItem label="Home" active />
-          <NavbarItem label="Series" />
+          <NavbarItem label="Series"/>
           <NavbarItem label="Films" />
           <NavbarItem label="New & Popular" />
           <NavbarItem label="My List" />
@@ -54,9 +58,20 @@ const Navbar = () => {
           <MobileMenu visible={showMobileMenu} />
         </div>
         <div className="flex flex-row ml-auto gap-7 items-center">
-          <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
-            <MagnifyingGlassIcon className="w-6" />
-          </div>
+          {/* Search Icon or Search Box */}
+          <div className="relative">
+            <div onClick={toggleSearch} className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
+              <MagnifyingGlassIcon className="w-6" />
+            </div>
+            {showSearch && (
+              <input 
+                type="text" 
+                placeholder="Search..." 
+                className="absolute top-0 left-0 mt-8 p-2 rounded-md bg-white text-black w-48 transition"
+                autoFocus
+              />
+            )}
+          </div>          
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
             <BellIcon className="w-6" />
           </div>
