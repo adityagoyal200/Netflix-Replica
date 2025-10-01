@@ -6,13 +6,29 @@ import useInfoModalStore from '@/hooks/useInfoModalStore';
 
 const Billboard: React.FC = () => {
   const { openModal } = useInfoModalStore();
-  const { data } = useBillboard();
+  const { data, isLoading, error } = useBillboard();
 
   const handleOpenModal = useCallback(() => {
-    openModal(data?.id);
+    if (data?.id) {
+      openModal(data.id);
+    }
   }, [openModal, data?.id]);
 
 
+
+  if (isLoading) {
+    return (
+      <div className="relative h-[56.25vw] bg-zinc-800 animate-pulse" />
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="relative h-[56.25vw] flex items-center justify-center">
+        <p className="text-red-500">Failed to load featured title.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="relative h-[56.25vw]">
@@ -25,13 +41,12 @@ const Billboard: React.FC = () => {
           {data?.description}
         </p>
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
-          <PlayButton movieId={data?.id} />
+          <PlayButton movieId={data?.id!} />
           <button
             onClick={handleOpenModal}
             className="
-            bg-white
-            text-white
-              bg-opacity-30 
+              bg-white/20
+              text-white
               rounded-md 
               py-1 md:py-2 
               px-2 md:px-4
@@ -41,10 +56,11 @@ const Billboard: React.FC = () => {
               flex
               flex-row
               items-center
-              hover:bg-opacity-20
+              ring-1 ring-white/30
+              hover:bg-white/10
               transition
             "
-            >
+          >
               <InformationCircleIcon className="w-4 md:w-7 mr-1" />
               More Info
           </button>

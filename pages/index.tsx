@@ -28,8 +28,8 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 const Home = () => {
-  const { data: movies = [] } = useMovieList();
-  const { data: favorites = [] } = useFavorites();
+  const { data: movies = [], isLoading: moviesLoading, error: moviesError } = useMovieList();
+  const { data: favorites = [], isLoading: favoritesLoading, error: favoritesError } = useFavorites();
   const {isOpen, closeModal} = useInfoModalStore();
 
   return (
@@ -38,6 +38,22 @@ const Home = () => {
       <Navbar />
       <Billboard />
       <div className="pb-40">
+        {(moviesLoading || favoritesLoading) && (
+          <div className="px-4 md:px-12 mt-4 space-y-8">
+            <div className="h-6 w-40 bg-zinc-800 animate-pulse rounded" />
+            <div className="grid grid-cols-4 gap-2">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="h-[12vw] bg-zinc-800 animate-pulse rounded-md" />
+              ))}
+            </div>
+          </div>
+        )}
+        {moviesError && (
+          <p className="text-red-500 px-4 md:px-12">Failed to load movies.</p>
+        )}
+        {favoritesError && (
+          <p className="text-red-500 px-4 md:px-12">Failed to load favorites.</p>
+        )}
         <MovieList title="Trending Now" data={movies} />
         <MovieList title="My List" data={favorites} />
       </div>

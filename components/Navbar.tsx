@@ -3,6 +3,8 @@ import { BellIcon, MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react
 import AccountMenu from '@/components/AccountMenu';
 import MobileMenu from '@/components/MobileMenu';
 import NavbarItem from '@/components/NavbarItem';
+import useCurrentUser from '@/hooks/useCurrentUser';
+import useProfileImageStore from '@/hooks/useProfileImageStore';
 
 const TOP_OFFSET = 66;
 
@@ -10,6 +12,8 @@ const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const { data: currentUser } = useCurrentUser();
+  const { selectedImage } = useProfileImageStore();
 
   const toggleAccountMenu = useCallback(() => {
     setShowAccountMenu((current) => !current);
@@ -49,7 +53,7 @@ const Navbar = () => {
               <input 
                 type="text" 
                 placeholder="Search..." 
-                className="absolute top-0 left-0 mt-8 p-2 rounded-md bg-white text-black w-48 transition"
+                className="absolute top-0 left-0 mt-8 px-3 py-2 rounded-md bg-neutral-800/80 text-white placeholder-neutral-300 w-56 ring-1 ring-white/20 backdrop-blur-md shadow-sm focus:outline-none focus:ring-white/40 transition"
                 autoFocus
               />
             )}
@@ -58,8 +62,8 @@ const Navbar = () => {
             <BellIcon className="w-6" />
           </div>
           <div onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 cursor-pointer relative">
-            <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
-              <img src="/images/default-blue.png" alt="" />
+            <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden ring-1 ring-white/20">
+              <img src={selectedImage || '/images/profile1.jpg'} alt="" />
             </div>
             <ChevronDownIcon className={`w-4 text-white fill-white transition ${showAccountMenu ? 'rotate-180' : 'rotate-0'}`} />
             <AccountMenu visible={showAccountMenu} />

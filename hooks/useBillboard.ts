@@ -1,12 +1,9 @@
 import useSwr from 'swr'
 import fetcher from '@/libs/fetcher';
+import { MovieInterface } from '@/types';
 
 const useBillboard = () => {
-  const { data, error, isLoading } = useSwr('/api/random', fetcher, { 
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-   });
+  const { data, error, isLoading } = useSwr<MovieInterface>('/api/random', fetcher);
   return {
     data,
     error,

@@ -1,12 +1,9 @@
 import useSwr from 'swr'
 import fetcher from '@/libs/fetcher';
+import { MovieInterface } from '@/types';
 
 const useMovie = (id?: string) => {
-  const { data, error, isLoading } = useSwr(id ? `/api/movies/${id}` : null, fetcher, {
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-  });
+  const { data, error, isLoading } = useSwr<MovieInterface>(id ? `/api/movies/${id}` : null, fetcher);
   return {
     data,
     error,

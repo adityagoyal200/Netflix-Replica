@@ -7,3 +7,12 @@ export interface MovieInterface {
   duration: string;
   genre: string;
 }
+
+export interface UserInterface {
+  id: string;
+  name: string;
+  image?: string | null;
+  email?: string | null;
+  emailVerified?: Date | null;
+  favoriteIds: string[];
+}
