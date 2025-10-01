@@ -1,4 +1,5 @@
 import { signOut } from 'next-auth/react';
+import Link from 'next/link';
 import React from 'react';
 import useProfileImageStore from '@/hooks/useProfileImageStore';
 
@@ -28,9 +29,9 @@ const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
             )}
           </div>
         </div>
-        <a href="/profiles" className="mt-2 text-white/90 text-sm px-2 py-2 rounded-md hover:bg-white/10 transition">
+        <Link href="/profiles" className="mt-2 text-white/90 text-sm px-2 py-2 rounded-md hover:bg-white/10 transition">
           Manage Profiles
-        </a>
+        </Link>
       </div>
       <hr className="bg-white/10 border-0 h-px my-3" />
       <button
