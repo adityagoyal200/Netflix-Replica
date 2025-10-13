@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/lodash": "^4.17.20",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "prisma": "^5.22.0",
