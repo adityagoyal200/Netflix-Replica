@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, memo } from 'react';
 import { PlusIcon, CheckIcon } from '@heroicons/react/24/outline';
 
 import useCurrentUser from '@/hooks/useCurrentUser';
@@ -9,7 +9,7 @@ interface FavoriteButtonProps {
   movieId: string
 }
 
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
+const FavoriteButton: React.FC<FavoriteButtonProps> = memo(({ movieId }) => {
   const { mutate: mutateFavorites } = useFavorites();
 
   const { data: currentUser, mutate } = useCurrentUser();
@@ -36,7 +36,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
       favoriteIds: updatedFavoriteIds,
     }) : prev);
     mutateFavorites();
-  }, [movieId, isFavorite, currentUser, mutate, mutateFavorites]);
+  }, [movieId, isFavorite, mutate, mutateFavorites]);
   
   const Icon = isFavorite ? CheckIcon : PlusIcon;
 
@@ -45,6 +45,8 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
       <Icon className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6" />
     </div>
   )
-}
+});
+
+FavoriteButton.displayName = 'FavoriteButton';
 
 export default FavoriteButton;

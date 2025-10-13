@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import { useRouter } from 'next/router';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { PlayIcon } from '@heroicons/react/24/solid';
@@ -11,7 +11,7 @@ interface MovieCardProps {
   data: MovieInterface;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
+const MovieCard: React.FC<MovieCardProps> = memo(({ data }) => {
   const router = useRouter();
   const { openModal } = useInfoModalStore();
 
@@ -92,6 +92,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
       </div>
     </div>
   )
-}
+});
+
+MovieCard.displayName = 'MovieCard';
 
 export default MovieCard;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 
 import { MovieInterface } from '@/types';
 import MovieCard from '@/components/MovieCard';
@@ -9,7 +9,13 @@ interface MovieListProps {
   title: string;
 }
 
-const MovieList: React.FC<MovieListProps> = ({ data, title }) => {
+const MovieList: React.FC<MovieListProps> = memo(({ data, title }) => {
+  const movieCards = useMemo(() => {
+    return data.map((movie) => (
+      <MovieCard key={movie.id} data={movie} />
+    ));
+  }, [data]);
+
   if (isEmpty(data)) {
     return null;
   }
@@ -19,13 +25,13 @@ const MovieList: React.FC<MovieListProps> = ({ data, title }) => {
       <div>
         <p className="text-white text-md md:text-xl lg:text-2xl font-semibold mb-4">{title}</p>
         <div className="grid grid-cols-4 gap-2">
-          {data.map((movie) => (
-            <MovieCard key={movie.id} data={movie} />
-          ))}
+          {movieCards}
         </div>
       </div>
     </div>
   );
-}
+});
+
+MovieList.displayName = 'MovieList';
 
 export default MovieList;

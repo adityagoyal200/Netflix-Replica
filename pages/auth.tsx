@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, memo } from 'react';
 import { NextPageContext } from 'next';
 import { getSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -26,7 +26,7 @@ export async function getServerSideProps(context: NextPageContext) {
   }
 }
 
-const Auth = () => {
+const Auth = memo(() => {
   const router = useRouter();
   const { selectedImage } = useProfileImageStore();
 
@@ -184,6 +184,8 @@ const Auth = () => {
       </div>
     </div>
   );
-}
+});
+
+Auth.displayName = 'Auth';
 
 export default Auth;

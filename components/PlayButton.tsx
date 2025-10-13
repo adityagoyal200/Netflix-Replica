@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { PlayIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/router';
 
@@ -6,12 +6,16 @@ interface PlayButtonProps {
   movieId: string;
 }
 
-const PlayButton: React.FC<PlayButtonProps> = ({ movieId }) => {
+const PlayButton: React.FC<PlayButtonProps> = memo(({ movieId }) => {
   const router = useRouter();
+
+  const handleClick = useCallback(() => {
+    router.push(`/watch/${movieId}`);
+  }, [router, movieId]);
 
   return (
     <button 
-      onClick={() => router.push(`/watch/${movieId}`)}
+      onClick={handleClick}
       className="
         bg-white 
         rounded-md 
@@ -31,6 +35,8 @@ const PlayButton: React.FC<PlayButtonProps> = ({ movieId }) => {
         Play
     </button>
   );
-}
+});
+
+PlayButton.displayName = 'PlayButton';
 
 export default PlayButton;

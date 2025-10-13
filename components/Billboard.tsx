@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import PlayButton from '@/components/PlayButton';
-import VideoPlayer from '@/components/VideoPlayer';
+import LazyVideoPlayer from '@/components/LazyVideoPlayer';
 import useBillboard from '@/hooks/useBillboard';
 import useInfoModalStore from '@/hooks/useInfoModalStore';
 
@@ -33,7 +33,7 @@ const Billboard: React.FC = () => {
 
   return (
     <div className="relative h-[56.25vw]">
-      <VideoPlayer 
+      <LazyVideoPlayer 
         src={data?.videoUrl || ''} 
         poster={data?.thumbnailUrl} 
         autoPlay 
